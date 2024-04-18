@@ -1,89 +1,99 @@
 const quizData = [
-    {
+  {
       question: "Какой тип водорослей считается самым простым?",
       correct: "Зеленые водоросли"
-    },
-    {
+  },
+  {
       question: "Как называется процесс, в ходе которого водоросли используют свет для превращения воды и углекислого газа в органические вещества?",
       correct: "Фотосинтез"
-    },
-    {
+  },
+  {
       question: "В каком месте водоема обитают фитопланктонные водоросли?",
       correct: "В поверхностном слое воды"
-    },
-    {
+  },
+  {
       question: "Какой тип водорослей представляет собой основной компонент морских водорослей?",
       correct: "Красные водоросли"
-    },
-    {
+  },
+  {
       question: "Что такое водоросли?",
       correct: "Организмы, производящие питательные вещества с использованием света"
-    },
-    {
+  },
+  {
       question: "В каком типе водорослей содержится вещество альгинат, используемое в пищевой промышленности и медицине?",
       correct: "Коричневые водоросли"
-    },
-    {
+  },
+  {
       question: "Какой из перечисленных типов водорослей преобладает в пресных водоемах?",
       correct: "Зеленые водоросли"
-    },
-    {
+  },
+  {
       question: "Как называется процесс, в ходе которого водоросли используют свет для превращения воды и углекислого газа в органические вещества?",
       correct: "Фотосинтез"
-    },
-    {
+  },
+  {
       question: "В каком месте водоема обитают фитопланктонные водоросли?",
       correct: "В поверхностном слое воды"
-    },
-    {
+  },
+  {
       question: "Какой тип водорослей представляет собой основной компонент морских водорослей?",
       correct: "Красные водоросли"
-    },
-  ];
-  
-  const questionElement = document.getElementById("question");
-  const answerInput = document.getElementById("answer-input");
-  const submitButton = document.getElementById("submit-btn");
-  const resultElement = document.getElementById("result");
-  const correctAnswerElement = document.getElementById("correct-answer");
-  const correctAnswerTextElement = document.getElementById("correct-answer-text");
-  const nextButton = document.getElementById("next-btn");
-  
-  let currentQuestionIndex = 0;
-  
-  function showQuestion(question) {
-    questionElement.innerText = question.question;
-    answerInput.value = "";
-    resultElement.innerText = "";
-    correctAnswerElement.style.display = "none";
-    nextButton.style.display = "none";
-  }
-  
-  function checkAnswer() {
-    const userAnswer = answerInput.value.trim();
-    const correctAnswer = quizData[currentQuestionIndex].correct;
-    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-      resultElement.innerText = "Верно!";
-    } else {
-      resultElement.innerText = "Неверно.";
-      correctAnswerTextElement.innerText = correctAnswer;
-      correctAnswerElement.style.display = "block";
-    }
-    nextButton.style.display = "block";
-  }
-  
-  submitButton.addEventListener("click", checkAnswer);
-  
-  nextButton.addEventListener("click", () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < quizData.length) {
-      showQuestion(quizData[currentQuestionIndex]);
-    } else {
-      // Добавьте здесь логику для завершения викторины
-    }
-  });
-  // Стили для кнопки "Ответить"
-// Стили для кнопки "Ответить"
+  },
+];
+
+
+const questionElement = document.getElementById("question");
+const answerInput = document.getElementById("answer-input");
+const submitButton = document.getElementById("submit-btn");
+const resultElement = document.getElementById("result");
+const correctAnswerElement = document.getElementById("correct-answer");
+const correctAnswerTextElement = document.getElementById("correct-answer-text");
+const nextButton = document.getElementById("next-btn");
+const correctCountElement = document.getElementById("correctCount");
+const incorrectCountElement = document.getElementById("incorrectCount");
+
+let correctCount = 0;
+let incorrectCount = 0;
+let currentQuestionIndex = 0;
+
+showQuestion(quizData[currentQuestionIndex]);
+
+function showQuestion(question) {
+  questionElement.innerText = question.question;
+  answerInput.value = "";
+  resultElement.innerText = "";
+  correctAnswerElement.style.display = "none";
+  nextButton.style.display = "none";
+}
+
+function checkAnswer() {
+const userAnswer = answerInput.value.trim();
+const correctAnswer = quizData[currentQuestionIndex].correct;
+if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+    resultElement.innerText = "Верно!";
+    correctCount++;
+    correctCountElement.innerText = correctCount; // Обновляем счетчик правильных ответов
+} else {
+    resultElement.innerText = "Неверно.";
+    correctAnswerTextElement.innerText = correctAnswer;
+    correctAnswerElement.style.display = "block";
+    incorrectCount++;
+    incorrectCountElement.innerText = incorrectCount; // Обновляем счетчик неправильных ответов
+}
+nextButton.style.display = "block";
+}
+
+submitButton.addEventListener("click", checkAnswer);
+
+nextButton.addEventListener("click", () => {
+currentQuestionIndex++;
+if (currentQuestionIndex < quizData.length) {
+  showQuestion(quizData[currentQuestionIndex]);
+} else {
+  currentQuestionIndex = 0; // Возвращаемся к первому вопросу после последнего
+  showQuestion(quizData[currentQuestionIndex]);
+}
+});
 submitButton.style.width = "45%";
 submitButton.style.padding = "15px";
 submitButton.style.backgroundColor = "#007bff";
@@ -117,11 +127,11 @@ nextButton.style.display = "none"; // Скрываем кнопку до сле�
 resultElement.style.fontSize = "20px";
 resultElement.style.fontWeight = "bold";
 
+
+
 // Стили для текста с правильным ответом
 correctAnswerTextElement.style.fontSize = "20px";
 correctAnswerTextElement.style.fontWeight = "bold";
 // Стили для слова "Правильный ответ"
 correctAnswerElement.style.fontSize = "20px";
 correctAnswerElement.style.fontWeight = "bold";
-
-  showQuestion(quizData[currentQuestionIndex]);

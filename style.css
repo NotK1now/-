@@ -74,6 +74,11 @@ body {
     font-size: 18px;
   }
   
+  .page{
+    text-decoration: none;
+    color: yellow;
+    text-align: center;
+  }
   #correct-answer {
     display: none;
     color: #dc3545;
@@ -109,3 +114,6 @@ body {
     }
   }
   
+
+
+ 
