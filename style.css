@@ -112,7 +112,26 @@ body {
       width: 100%; /* Занимаем всю ширину экрана */
       margin-top: 10px; /* Уменьшаем отступ между кнопками */
     }
-  }
+    #answer-input {
+      font-size: 14px;
+    }
+    
+    #resultsContainer {
+      padding: 20px;
+      max-width: 90%;
+      box-shadow: none;
+    }
+  
+    #resultsContainer h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  
+    #resultsContainer p {
+      font-size: 16px;
+    }
+    }
+  
   
 
 

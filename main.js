@@ -86,13 +86,13 @@ nextButton.style.display = "block";
 submitButton.addEventListener("click", checkAnswer);
 
 nextButton.addEventListener("click", () => {
-currentQuestionIndex++;
-if (currentQuestionIndex < quizData.length) {
-  showQuestion(quizData[currentQuestionIndex]);
-} else {
-  currentQuestionIndex = 0; // Возвращаемся к первому вопросу после последнего
-  showQuestion(quizData[currentQuestionIndex]);
-}
+  currentQuestionIndex++;
+  if (currentQuestionIndex < quizData.length) {
+    showQuestion(quizData[currentQuestionIndex]);
+  } else {
+    currentQuestionIndex = 10; // Возвращаемся к первому вопросу после последнего
+    showQuestion(quizData[currentQuestionIndex]);
+  }
 });
 submitButton.style.width = "45%";
 submitButton.style.padding = "15px";
